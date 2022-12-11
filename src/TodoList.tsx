@@ -34,9 +34,10 @@ const TodoList = () => {
             </form>
             <h2>Todo<button onClick={() => { setFilterDescending(!filterDescending); sortTodos(filterDescending) }}>{filterDescending ? <FaArrowUp /> : <FaArrowDown />}</button></h2>
 
-            <ul>
-                {todos.map(todo => <li key={todo.id}>{todo.text} <button onClick={() => removeTodo(todo.id)}>Ta bort</button></li>)}
-            </ul>
+            {todos.length ?
+                <ul>
+                    {todos.map(todo => <li key={todo.id}>{todo.text} <button onClick={() => removeTodo(todo.id)}>Ta bort</button></li>)}
+                </ul> : <p>Du har inga todos</p>}
         </>
     )
 }
