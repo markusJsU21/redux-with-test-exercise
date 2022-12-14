@@ -12,11 +12,11 @@ describe('todoReducer', () => {
     })
 
     it('should add a todo to the state when it receives a todo', () => {
-        const previousState = {todos: [],
+        const previousState = {todos: [{id: 'asdgfdhg', text: 'awsdgfh'}],
             todoText: ''
         } as InitialState
         expect(reducer(previousState, addTodo({id: 'hjksgdf', text: 'hejsan'})))
-        .toEqual({todos:[{id: 'hjksgdf', text: 'hejsan'}],
+        .toEqual({todos:[{id: 'asdgfdhg', text: 'awsdgfh'},{id: 'hjksgdf', text: 'hejsan'}],
         todoText: ''})
     })
 
@@ -24,12 +24,15 @@ describe('todoReducer', () => {
         const mockStateData = {todos: [
           {
             id: 'hjksgdf', text: 'hejsan'
-        }
+        },
+    {
+        id: 'sdgf', text: 'asdfg'
+    }
         ],
             todoText: ''
         } as InitialState
         expect(reducer(mockStateData, removeTodo('hjksgdf')))
-        .toEqual({todos:[],
+        .toEqual({todos:[{ id: 'sdgf', text: 'asdfg'}],
         todoText: ''})
     })
 })
