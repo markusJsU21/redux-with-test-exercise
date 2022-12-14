@@ -4,12 +4,14 @@ import type { Todo } from '../TodoList'
 
 export interface InitialState {
     todos: Todo[],
-    todoText: string
+    todoText: string,
+    filterDescending: boolean
 }
 
 const initialState = {
     todos: [],
-    todoText: ''
+    todoText: '',
+    filterDescending: true
     } as InitialState
 
 const todoSlice = createSlice({
@@ -22,12 +24,18 @@ const todoSlice = createSlice({
         removeTodo(state, action: PayloadAction<string>){
            state.todos = state.todos.filter(todo => todo.id !== action.payload)
         },
-        sortTodos(state, action: PayloadAction<boolean>){
-            const desc = action.payload
+        sortTodos(state){
+            const desc = state.filterDescending
             state.todos.sort((a, b) => (desc ? 1 : -1) * a.text.localeCompare(b.text));
+        },
+        setNewTodoText(state, action: PayloadAction<string>){
+            state.todoText = action.payload
+        },
+        filterDescending(state){
+            state.filterDescending = !state.filterDescending
         }
     }
 })
 
-export const {addTodo, removeTodo, sortTodos} = todoSlice.actions
+export const {addTodo, removeTodo, sortTodos, setNewTodoText, filterDescending} = todoSlice.actions
 export default todoSlice.reducer
