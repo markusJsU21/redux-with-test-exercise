@@ -25,6 +25,7 @@ const TodoList = () => {
             text: newTodoText
         }
         dispatch(addTodo(todo))
+        dispatch(sortTodos())
         dispatch(setNewTodoText(""));
     }
 
