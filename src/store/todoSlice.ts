@@ -31,11 +31,11 @@ const todoSlice = createSlice({
         setNewTodoText(state, action: PayloadAction<string>){
             state.todoText = action.payload
         },
-        filterDescending(state){
+        filterToogle(state){
             state.filterDescending = !state.filterDescending
         }
     }
 })
 
-export const {addTodo, removeTodo, sortTodos, setNewTodoText, filterDescending} = todoSlice.actions
+export const {addTodo, removeTodo, sortTodos, setNewTodoText, filterToogle} = todoSlice.actions
 export default todoSlice.reducer

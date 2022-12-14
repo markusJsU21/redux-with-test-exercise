@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodo, removeTodo, sortTodos, setNewTodoText, filterDescending } from './store/todoSlice'
+import { addTodo, removeTodo, sortTodos, setNewTodoText, filterToogle } from './store/todoSlice'
 
 export type Todo = {
     id: string,
@@ -38,7 +38,7 @@ const TodoList = () => {
                 <input placeholder="Skriv en todo..." onChange={(event) => dispatch(setNewTodoText(event.target.value))} value={newTodoText}></input>
                 <button type="submit" disabled={newTodoText.length === 0}>Lägg till</button>
             </form>
-            <h2>Todo<button onClick={() => { dispatch(filterDescending()); dispatch(sortTodos()) }}>{filterDescending ? <FaArrowUp /> : <FaArrowDown />}</button></h2>
+            <h2>Todo<button onClick={() => { dispatch(filterToogle()); dispatch(sortTodos()) }}>{filterDescending ? <FaArrowUp /> : <FaArrowDown />}</button></h2>
 
             {todos.length ?
                 <ul>
